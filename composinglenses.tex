@@ -37,7 +37,7 @@ Lens Person Address
 
 \begin{block}{What is a Semigroupoid?}
 \begin{lstlisting}[language=haskell]
-(.) ::
+(>>>) ::
   semi a b
   -> semi b c
   -> semi a c
@@ -50,6 +50,25 @@ Lens Person Address
 \item \lstinline$(->)$
 \item \lstinline$Monad m => Kleisli m$
 \item \lstinline$Lens$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Traversing the Graph}
+
+\begin{block}{Since Lens is a Semigroupoid \ldots}
+\begin{itemize}
+\item We can compose to an arbitrary depth
+\item To reverse a person's suburb
+\begin{lstlisting}[language=haskell]
+reverseSuburb :: Person -> Person
+reverseSuburb =
+  modify (nameLens >>> suburbLens) reverse
+\end{lstlisting}
+\item No more code shaped like a Greater Than symbol!
+
 \end{itemize}
 \end{block}
 
