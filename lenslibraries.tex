@@ -61,3 +61,30 @@ Lens s1 g1 *** Lens s2 g2 =
 
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Lens Libraries}
+
+\begin{block}{And More}
+\begin{itemize}
+\item \begin{lstlisting}[language=haskell]
+unzip ::
+  Lens s (a, b)
+  -> (Lens s a, Lens s b)
+\end{lstlisting}
+
+\item \begin{lstlisting}[language=haskell]
+factor ::
+  Lens (Either a b) (Either a c)
+  -> Lens a (Either b c)
+\end{lstlisting}
+
+\item \begin{lstlisting}[language=haskell]
+distribute ::
+  Lens a (Either b c)
+  -> Lens (Either a b) (Either a c)
+\end{lstlisting}
+\end{itemize}
+\end{block}
+
+\end{frame}
+
