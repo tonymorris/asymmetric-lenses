@@ -45,9 +45,9 @@ case j of
 \begin{frame}[fragile]
 \frametitle{I Kid}
 
-\begin{block}{Partial Lenses:}
+\begin{block}{Partial Lenses}
 \begin{itemize}
-\item compose as their own semigroupoid
+\item compose as a semigroupoid
 \begin{lstlisting}[language=haskell]
 (>>>) ::
   PartialLens a b ->
@@ -67,3 +67,42 @@ case j of
 
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Example}
+
+\begin{block}{Partial Lens for the JArray constructor}
+\begin{lstlisting}[language=haskell]
+jArrayLens ::
+  PartialLens Json [Json]
+jArrayLens =
+  PartialLens
+    (\j x -> 
+      case j of JArray _ -> Just x
+      case _ -> Nothing) 
+    (\j -> 
+      case j of JArray x -> Just x
+      case _ -> Nothing)
+\end{lstlisting}
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Example Partial Lens Values}
+
+\begin{block}{Partial Lens for the head of a list}
+\begin{lstlisting}[language=haskell]
+jHeadLens ::
+  PartialLens [a] a
+jHeadLens =
+  PartialLens
+    (\q h -> 
+      case q of (_:t) -> Just (h:t)
+      case [] -> Nothing) 
+    (\q -> 
+      case q of (h:_) -> Just h
+      case [] -> Nothing)
+\end{lstlisting}
+\end{block}
+
+\end{frame}
