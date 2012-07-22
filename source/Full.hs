@@ -48,3 +48,38 @@ data Person = Person {
   name :: String
 , address :: Address
 }
+
+-- (|||), (***), unzip, factor, distribute
+
+-- fstLens, sndLens, mapLens, setLens
+
+data PartialLens a b = PartialLens (a -> Maybe (b -> a, b))
+
+data Json =
+  JNull
+  | JBool Bool
+  | JNumber Double
+  | JString String
+  | JArray [Json]
+  | JObject [(String, Json)]
+
+(>>>>) ::
+  PartialLens a b
+  -> PartialLens b c
+  -> PartialLens a c
+PartialLens f >>>> PartialLens g =
+  PartialLens (\a -> 
+    do (x, b) <- f a 
+       (y, c) <- g b
+       return (x . y, c))
+
+--   PartialLens (\a -> g1 a >>= \y -> undefined) (\x -> g1 x >>= g2) -- (\a c -> s1 a (s2 (g1 a) c)) (g2 . g1)
+-- y :: b -> a
+
+{-
+PLens f . PLens g = PLens $ \a -> do
+      (StoreT wba b) <- g a
+      (StoreT wcb c) <- f b
+      return (StoreT ((.) <$> wba <*> wcb) c)
+-}
+
