@@ -2,7 +2,7 @@
 \frametitle{The \lstinline$modify$ Problem}
 
 \begin{block}{Record types}
-\lstinputlisting[label=lst:Person.hs,caption=Person data type,language=haskell]{source/Person.hs}
+\lstinputlisting[label=lst:Person.hs,language=haskell]{source/Person.hs}
 \end{block}
 
 \end{frame}
@@ -25,7 +25,7 @@
 
 \begin{block}{Code blowout}
 \begin{itemize}
-\item Worse still, we have to write many other functions, per record field
+\item We have to write many other functions, per record field
   \begin{itemize}
   \item \lstinline[language=haskell]$setName :: String -> Person -> Person$
   \item \lstinline[language=haskell]$setNameAddress :: (String, Address) -> Person -> Person$

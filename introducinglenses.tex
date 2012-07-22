@@ -1,0 +1,23 @@
+\begin{frame}[fragile]
+\frametitle{Introducing Lenses}
+
+\begin{block}{Lens is a Data Type}
+\lstinputlisting[label=lst:Lens.hs,language=haskell]{source/Lens.hs}
+\end{block}
+\begin{block}{Example Lens}
+\begin{lstlisting}[language=haskell]
+nameLens :: Lens Person String
+\end{lstlisting}
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{A universal \lstinline$modify$}
+
+\begin{block}{A universal \lstinline$modify$}
+\lstinputlisting[label=lst:modify.hs,language=haskell]{source/modify.hs}
+\end{block}
+
+\end{frame}
+
