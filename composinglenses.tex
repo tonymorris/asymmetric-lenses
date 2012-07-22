@@ -1,0 +1,49 @@
+\begin{frame}[fragile]
+\frametitle{Composing Lenses}
+
+\begin{itemize}
+\item We now have a universal \lstinline[language=haskell]$modify$ function to run with any lens
+\item How do we handled embedded fields?
+  \begin{itemize}
+  \item A person has an address and an address has a suburb
+  \item How can we get to the person's suburb?
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Composing Lenses}
+
+\begin{block}{Compose the name and suburb lenses}
+\begin{lstlisting}[language=haskell]
+nameLens :: Lens Person Address
+suburbLens :: Lens Address String
+\end{lstlisting}
+\end{block}
+
+\begin{block}{Can we compose them?}
+\begin{lstlisting}[language=haskell]
+Lens Person Address
+-> Lens Address String
+-> Lens Person String
+\end{lstlisting}
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Lens is a Semigroupoid}
+
+\begin{block}{What is a Semigroupoid?}
+\begin{lstlisting}[language=haskell]
+(.) ::
+  semi a b
+  -> semi b c
+  -> semi a c
+\end{lstlisting}
+
+\end{block}
+
+\end{frame}
+
