@@ -1,7 +1,20 @@
 \begin{frame}
-\frametitle{The \lstinline{modify} Problem}
+\frametitle{The \lstinline$modify$ Problem}
 
+\begin{block}{Record types}
 \lstinputlisting[label=lst:Person.hs,caption=Person data type,language=haskell]{source/Person.hs}
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{The \lstinline$modify$ Problem}
+
+\begin{itemize}
+\item Supposing we wish to reverse or upper-case a person's name
+\item \lstinline[language=haskell]$modifyName :: (String -> String) -> Person -> Person$
+\item We have to write this function for \emph{every} record field.
+\end{itemize}
 
 \end{frame}
 
