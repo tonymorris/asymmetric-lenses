@@ -1,0 +1,63 @@
+\begin{frame}[fragile]
+\frametitle{Lens Libraries}
+
+% (|||) :: Lens a x -> Lens b x -> Lens (Either a b) x
+% (***) :: Lens a b -> Lens c d -> Lens (a, c) (b, d)
+% factor :: Lens (Either a b) (Either a c) -> Lens a (Either b c)
+% distribute :: Lens a (Either b c) -> Lens (Either a b) (Either a c)
+% unzip :: Lens s (a, b) -> (Lens s a, Lens s b)
+% identity :: Lens a a
+
+Not only does a Lens give rise to a Semigroupoid, but it also maps a set onto itself
+
+\begin{block}{Identity Lens}
+\begin{lstlisting}[language=haskell]
+identityLens :: Lens a a
+identityLens = Lens (const id) id
+\end{lstlisting}
+\end{block}
+
+A Semigroupoid that has an identity element is called a \emph{Category}. Lens is a category.
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Lens Libraries}
+
+Two split lenses that map onto a value of the same element type produce a lens that can merge.
+
+\begin{block}{Split Lens}
+\begin{lstlisting}[language=haskell]
+(|||) ::
+  Lens a x
+  -> Lens b x
+  -> Lens (Either a b) x
+Lens s1 g1 ||| Lens s2 g2 =
+  Lens (either
+          (\a -> Left . s1 a) 
+          (\b -> Right . s2 b))
+       (either g1 g2)
+\end{lstlisting}
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Lens Libraries}
+
+Two disjoint lenses can be paired.
+
+\begin{block}{Lens Tensor}
+\begin{lstlisting}[language=haskell]
+(***) ::
+  Lens a b
+  -> Lens c d
+  -> Lens (a, c) (b, d)
+Lens s1 g1 *** Lens s2 g2 =
+  Lens (\(a, c) (b, d) -> (s1 a b, s2 c d))
+       (\(a, c) -> (g1 a, g2 c))
+\end{lstlisting}
+\end{block}
+
+\end{frame}
+
