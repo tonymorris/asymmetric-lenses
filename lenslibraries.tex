@@ -87,6 +87,7 @@ distribute ::
 \end{block}
 
 \end{frame}
+
 \begin{frame}[fragile]
 \frametitle{Lens Values}
 
@@ -103,6 +104,25 @@ sndLens :: Lens (a, b) a
 sndLens =
   Lens (\(a, _) b -> (a, b)) snd
 \end{lstlisting}
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Lens Values}
+
+\begin{block}{Lenses on collections}
+\begin{itemize}
+\item \begin{lstlisting}[language=haskell]
+mapLens ::
+  Lens (Map k v) (Maybe v)
+\end{lstlisting}
+
+\item \begin{lstlisting}[language=haskell]
+setLens ::
+  Lens (Set a) Bool
+\end{lstlisting}
+\end{itemize}
 \end{block}
 
 \end{frame}
