@@ -4,6 +4,6 @@ data Address = Address {
 }
 
 data Person = Person {
-  age :: Int
+  name :: String
 , address :: Address
 }
