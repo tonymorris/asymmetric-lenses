@@ -27,8 +27,23 @@
   \item \lstinline[language=haskell]$setName :: String -> Person -> Person$
   \item \lstinline[language=haskell]$setNameAddress :: (String, Address) -> Person -> Person$
   \end{itemize}
-\item Worse again, we would have to do this as record fields are embedded
 \end{itemize}
+
+\begin{frame}
+\frametitle{And Even Worse}
+
+\begin{itemize}
+\item Worse still, we would have to write many other functions and  per record field
+  \begin{itemize}
+  \item These functions must be written as record fields are embedded
+  \item How to set a person's suburb?
+    \begin{lstlisting}[label=lst:Lens_product_type,language=haskell]
+    data Hi
+    \end{lstlisting}
+
+  \end{itemize}
+\end{itemize}
+
 
 \end{frame}
 
