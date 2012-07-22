@@ -1,0 +1,69 @@
+\begin{frame}
+\frametitle{Partial Lenses}
+
+\begin{block}{Sum types}
+\begin{itemize}
+\item Partial lenses provide \emph{nullability} through the lens
+\item As a regular lens corresponds to fields of a record type, a partial lens corresponds to constructors of a sum type
+\item \lstinputlisting[label=lst:Lens.hs,language=haskell]{source/PartialLens.hs}
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Example Sum Type}
+
+\begin{block}{JSON Data Type}
+\lstinputlisting[label=lst:Lens.hs,language=haskell]{source/Json.hs}
+How do we navigate this data structure to perform retrieval and updates?
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Like this}
+
+\begin{block}{With a gigantic \textgreater symbol that's how}
+\begin{lstlisting}[language=haskell]
+case j of
+  JArray x -> 
+    case x of
+      [] -> j
+      (h:t) -> JArray (case h of 
+        JArray y ->
+          case y of
+            a:b:u -> JArray (b:a:u)
+            _ -> j) t
+            _ -> j
+  _ -> j
+\end{lstlisting}
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{I Kid}
+
+\begin{block}{Partial Lenses:}
+\begin{itemize}
+\item compose as their own semigroupoid
+\begin{lstlisting}[language=haskell]
+(>>>) ::
+  PartialLens a b ->
+  PartialLens b c ->
+  PartialLens a c
+\end{lstlisting}
+\item split and merge
+\begin{lstlisting}[language=haskell]
+(|||) ::
+  PartialLens a x
+  -> PartialLens b x
+  -> PartialLens (Either a b) x
+\end{lstlisting}
+\item \ldots and all those other helpful bits too!
+\end{itemize}
+\end{block}
+
+\end{frame}
+
