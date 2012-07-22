@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+NAME=asymmetric-lenses
+
+latex $NAME.tex
+dvipdf $NAME.dvi $NAME.pdf
+

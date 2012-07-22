@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+NAME=asymmetric-lenses
+
+latex $NAME.tex
+dvips $NAME.dvi -o $NAME.ps
+
