@@ -92,7 +92,16 @@ distribute ::
 
 \begin{block}{First Lens}
 \begin{lstlisting}[language=haskell]
-sdf
+fstLens :: Lens (a, b) a
+fstLens =
+  Lens (\(_, b) a -> (a, b)) fst
+\end{lstlisting}
+\end{block}
+\begin{block}{Second Lens}
+\begin{lstlisting}[language=haskell]
+sndLens :: Lens (a, b) a
+sndLens =
+  Lens (\(a, _) b -> (a, b)) snd
 \end{lstlisting}
 \end{block}
 
