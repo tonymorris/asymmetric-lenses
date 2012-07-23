@@ -74,14 +74,14 @@ unzip ::
 
 \item \begin{lstlisting}[language=haskell]
 factor ::
-  Lens (Either a b) (Either a c)
-  -> Lens a (Either b c)
+  Lens (Either (a, b) (a, c)) 
+       (a, Either b c)
 \end{lstlisting}
 
 \item \begin{lstlisting}[language=haskell]
 distribute ::
-  Lens a (Either b c)
-  -> Lens (Either a b) (Either a c)
+  Lens (a, Either b c)
+       (Either (a, b) (a, c))
 \end{lstlisting}
 \end{itemize}
 \end{block}
@@ -115,12 +115,12 @@ sndLens =
 \begin{itemize}
 \item \begin{lstlisting}[language=haskell]
 mapLens ::
-  Lens (Map k v) (Maybe v)
+  Ord k => k -> Lens (Map k v) (Maybe v)
 \end{lstlisting}
 
 \item \begin{lstlisting}[language=haskell]
 setLens ::
-  Lens (Set a) Bool
+  Ord a => a => Lens (Set a) Bool
 \end{lstlisting}
 \end{itemize}
 \end{block}
