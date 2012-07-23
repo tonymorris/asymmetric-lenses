@@ -76,12 +76,9 @@ jArrayLens ::
   PartialLens Json [Json]
 jArrayLens =
   PartialLens
-    (\j x -> 
-      case j of JArray _ -> Just x
-      case _ -> Nothing) 
-    (\j -> 
-      case j of JArray x -> Just x
-      case _ -> Nothing)
+    (\j -> case j of 
+      JArray x -> Just (JArray, x)
+      _        -> Nothing)
 \end{lstlisting}
 \end{block}
 
@@ -96,12 +93,9 @@ jHeadLens ::
   PartialLens [a] a
 jHeadLens =
   PartialLens
-    (\q h -> 
-      case q of (_:t) -> Just (h:t)
-      case [] -> Nothing) 
-    (\q -> 
-      case q of (h:_) -> Just h
-      case [] -> Nothing)
+    (\x -> case x of
+      (h:t) -> Just (\i -> i:t, h)
+      _     -> Nothing)
 \end{lstlisting}
 \end{block}
 

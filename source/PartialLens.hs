@@ -1,4 +1,2 @@
-data PartialLens a b = PartialLens {
-  set :: a -> Maybe (b -> a)
-, get :: a -> Maybe b
-}
+data PartialLens a b =
+  PartialLens (a -> Maybe (b -> a, b))
