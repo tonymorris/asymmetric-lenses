@@ -6,6 +6,32 @@
 \item Fusing Lenses on the target to the pair of set/get (Store)
 \item Optimal Integration into a General Purpose Programming Language
 \item Lenses must obey laws
+% identity :: 
+%   Eq a =>
+%   Lens a b
+%   -> a
+%   -> Bool
+% identity (Lens s g) a =
+%   s a (g a) == a
+% 
+% retention :: 
+%   Eq b => 
+%   Lens a b
+%   -> a
+%   -> b
+%   -> Bool
+% retention (Lens s g) a b =
+%   g (s a b) == b
+% 
+% doubleSet ::
+%   Eq a =>
+%   Lens a b
+%   -> a
+%   -> b
+%   -> b
+%   -> Bool
+% doubleSet (Lens s g) a b1 b2 =
+%   s (s a b1) b2 == s a b2
 \end{itemize}
 
 \end{frame}
