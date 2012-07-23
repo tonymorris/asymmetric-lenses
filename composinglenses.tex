@@ -65,7 +65,9 @@ Lens Person Address
 \begin{lstlisting}[language=haskell]
 reverseSuburb :: Person -> Person
 reverseSuburb =
-  modify (addressLens >>> suburbLens) reverse
+  modify 
+    (addressLens >>> suburbLens)
+    reverse
 \end{lstlisting}
 \item No more code shaped like a Greater Than symbol!
 

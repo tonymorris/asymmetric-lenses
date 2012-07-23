@@ -50,9 +50,9 @@ case j of
 \item compose as a semigroupoid
 \begin{lstlisting}[language=haskell]
 (>>>) ::
-  PartialLens a b ->
-  PartialLens b c ->
-  PartialLens a c
+  PartialLens a b
+  -> PartialLens b c
+  -> PartialLens a c
 \end{lstlisting}
 \item split and merge
 \begin{lstlisting}[language=haskell]
