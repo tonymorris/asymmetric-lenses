@@ -100,7 +100,7 @@ fstLens =
 \end{block}
 \begin{block}{Second Lens}
 \begin{lstlisting}[language=haskell]
-sndLens :: Lens (a, b) a
+sndLens :: Lens (a, b) b
 sndLens =
   Lens (\(a, _) b -> (a, b)) snd
 \end{lstlisting}
@@ -120,7 +120,7 @@ mapLens ::
 
 \item \begin{lstlisting}[language=haskell]
 setLens ::
-  Ord a => a => Lens (Set a) Bool
+  Ord a => a -> Lens (Set a) Bool
 \end{lstlisting}
 \end{itemize}
 \end{block}
